@@ -15,14 +15,14 @@ body {
     margin-right: 20px;
     font-size: 1em;
     padding: 20px;
-    min-width: 600px;
+    min-width: 800px;
     flex-flow: column nowrap;
     border: 5px solid orange
 }
 
 .input-seccion {
     display:flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     flex: 1;
     margin: 30px;
 }
@@ -51,4 +51,14 @@ label {
     max-width: 300px;
     margin-bottom: 5px;
     font-size: 1.5em;
+}
+
+.error-section {
+    display:flex;
+    justify-content: flex-end;
+    flex: auto;
+}
+
+.error {
+    color: red;
 }

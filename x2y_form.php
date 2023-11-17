@@ -1,17 +1,11 @@
 <?php
 include_once 'funciones_cambio_base.php';
 
-function x2y(int $num, int $baseOrigen, int $baseDestino): int {
-    return dec2x(x2dec($num, $baseOrigen), $baseDestino);
-}
-
-;
-
 if (!empty($_POST)) {
     $numero = $_POST['numero'];
     $baseOrigen = $_POST['baseorigen'];
     $baseDestino = $_POST['basedestino'];
-    $numeroNuevaBase = dec2x(x2dec($numero, $baseOrigen), $baseDestino);
+    $numeroNuevaBase = x2y($numero, $baseOrigen, $baseDestino);
 }
 ?>
 <!DOCTYPE html>
@@ -29,26 +23,27 @@ if (!empty($_POST)) {
                   action="<?= "{$_SERVER['PHP_SELF']}" ?>" method="POST">                
                 <div class="input-seccion">
                     <label for="numero">Número:</label> 
-                    <input id="numero" type="text"  required name="numero" value="<?= ($numero) ?? ''; ?>" />
+                    <input id="numero" type="text" required pattern="[0-9A-F]*" name="numero" value="<?= ($numero) ?? ''; ?>" />
                 </div>
                 <div class="input-seccion">
                     <label for="baseorigen">Base Origen (2-16):</label> 
-                    <input id="numero" type="number"  min="2" max="16" required name="baseorigen" value="<?= ($baseOrigen) ?? ''; ?>" />
+                    <input id="numero" type="number" min="2" max="16" required name="baseorigen" value="<?= ($baseOrigen) ?? ''; ?>" />
                 </div>
                 <div class="input-seccion">
                     <label for="basedestino">Base Destino (2-16):</label> 
-                    <input id="basedestino" type="number"  min="2" max="16" required name="basedestino" value="<?= ($baseDestino) ?? ''; ?>" />
-                </div>
-                <div class="submit-seccion">
-                    <input class="submit" type="submit" 
-                           value="Cambio de Base" name="cambiobase" /> 
+                    <input id="basedestino" type="number" min="2" max="16" required name="basedestino" value="<?= ($baseDestino) ?? ''; ?>" />
                 </div>
                 <?php if (isset($numeroNuevaBase)): ?>
                     <div class="input-seccion">
                         <label for="numeronuevabase">Número en la nueva Base:</label> 
-                        <input id="numeronuevabase" type="text"   required value="<?= $numeroNuevaBase ?>" readonly/>
+                        <input id="numeronuevabase" type="text" value="<?= $numeroNuevaBase ?>" readonly/>
                     </div>
-                <?php endif ?>                 
+                <?php endif ?> 
+                <div class="submit-seccion">
+                    <input class="submit" type="submit" 
+                           value="Cambio de Base" name="cambiobase" /> 
+                </div>
+
             </form> 
         </div>  
     </body>

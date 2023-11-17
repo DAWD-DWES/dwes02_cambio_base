@@ -1,17 +1,25 @@
 <?php
 include_once 'funciones_cambio_base.php';
 
-$numeros = [123, 45, 245];
+$numeros = ['123', '45', '245', 'AE5', 'GT7'];
 
 $baseOrigen = 6;
 $baseDestino = 12;
 
-$x2y = function (int $num) use ($baseOrigen, $baseDestino) {
+$x2y = function (string $num) use ($baseOrigen, $baseDestino) {
     return dec2x(x2dec($num, $baseOrigen), $baseDestino);
 };
 
+// $pattern = '[0-' . (($baseOrigen < 10) ? "$baseOrigen" : '9,A' . 
 
-$numerosNuevaBase = array_map($x2y, $numeros);
+
+$numerosFiltrados = array_filter($numeros, fn($numero) => preg_match('/^[0-9A-F]*$/', $numero));
+
+$numerosNuevaBase = array_map($x2y, $numerosFiltrados);
+
+$total = array_reduce($numerosNuevaBase, function(string $num1, string $num2) use ($baseDestino, $baseOrigen){
+        return(dec2x(x2dec($num1, $baseOrigen) + x2dec($num2, $baseOrigen), $baseDestino));
+        }, 0);
 ?>
 <!DOCTYPE html>
 <html>
@@ -29,7 +37,7 @@ $numerosNuevaBase = array_map($x2y, $numeros);
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($numeros as $key => $numero): ?>
+                <?php foreach ($numerosFiltrados as $key => $numero): ?>
                     <tr>
                         <td><?= $numeros[$key] ?></td>
                         <td><?= $numerosNuevaBase[$key] ?></td>
@@ -37,5 +45,6 @@ $numerosNuevaBase = array_map($x2y, $numeros);
                 <?php endforeach ?>
             </tbody>
         </table>
+        <h2><?= "La suma de todos los números es $total" ?></h2>
     </body>
 </html>
