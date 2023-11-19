@@ -1,10 +1,10 @@
 <?php
 include_once 'funciones_cambio_base.php';
 
-$numeros = ['123', '45', '245', 'AE5', 'GT7'];
+$numeros = ['0', '45', '245', 'GT7'];
 
-$baseOrigen = 6;
-$baseDestino = 12;
+$baseOrigen = 10;
+$baseDestino = 2;
 
 $x2y = function (string $num) use ($baseOrigen, $baseDestino) {
     return dec2x(x2dec($num, $baseOrigen), $baseDestino);
@@ -17,9 +17,9 @@ $numerosFiltrados = array_filter($numeros, fn($numero) => preg_match('/^[0-9A-F]
 
 $numerosNuevaBase = array_map($x2y, $numerosFiltrados);
 
-$total = array_reduce($numerosNuevaBase, function(string $num1, string $num2) use ($baseDestino, $baseOrigen){
-        return(dec2x(x2dec($num1, $baseOrigen) + x2dec($num2, $baseOrigen), $baseDestino));
-        }, 0);
+$total = dec2x (array_reduce($numerosFiltrados, function (string $num1, string $num2) use ($baseDestino, $baseOrigen) {
+    return((int) x2dec($num1, $baseOrigen) + (int) x2dec($num2, $baseOrigen));
+}, 0), $baseDestino);
 ?>
 <!DOCTYPE html>
 <html>

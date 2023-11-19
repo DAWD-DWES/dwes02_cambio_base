@@ -10,16 +10,16 @@
  * @return string Número expresado en la nueva base
  */
 function dec2x(string $numero, int $base): string {
-    $restos = '';
-    while ($numero >= $base) {
+    $conversion = '';
+    while ($numero > 0) {
         $resto = $numero % $base;
         if ($resto > 9) {
             $resto = chr(ord('A') + $resto - 10);
         }
-        $restos = $resto . $restos;
-        $numero = intdiv($numero, $base);
+        $conversion = $resto . $conversion;
+        $numero = intdiv((int) $numero, $base);
     }
-    return ( ((($numero > 9) ? chr(ord('A') + $numero - 10) : $numero) . $restos));
+    return $conversion ?: 0;
 }
 
 /**
