@@ -9,17 +9,17 @@
  * @param int $base Base a la que se va a cambiar
  * @return string Número expresado en la nueva base
  */
-function dec2x(string $numero, int $base): string {
+function dec2x(int $numero, int $base): string {
     $conversion = '';
-    while ($numero > 0) {
+    do {
         $resto = $numero % $base;
         if ($resto > 9) {
             $resto = chr(ord('A') + $resto - 10);
         }
         $conversion = $resto . $conversion;
-        $numero = intdiv((int) $numero, $base);
-    }
-    return $conversion ?: 0;
+        $numero = intdiv($numero, $base);
+    } while ($numero > 0);
+    return $conversion;
 }
 
 /**
@@ -29,7 +29,7 @@ function dec2x(string $numero, int $base): string {
  * @param int $base Base a la que se va a cambiar
  * @return string Número expresado en la nueva base
  */
-function x2dec(string $numero, int $base): string {
+function x2dec(string $numero, int $base): int {
     $conversion = 0;
     for ($i = 0; $i < strlen($numero); $i++) {
         $digito = substr(strrev((string) $numero), $i, 1);

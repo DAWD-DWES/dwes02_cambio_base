@@ -2,17 +2,14 @@
 $base = 12;
 $numero = 123;
 $conversion = '';
-while ($numero > 0) {
+do {
     $resto = $numero % $base;
     if ($resto > 9) {
         $resto = chr(ord('A') + $resto - 10);
     }
     $conversion = $resto . $conversion;
     $numero = intdiv($numero, $base);
-}
-$conversion = $conversion ?: 0;
-
-
+} while ($numero > 0);
 ?>
 <!DOCTYPE html>
 <html>

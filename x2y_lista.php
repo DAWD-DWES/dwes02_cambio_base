@@ -6,20 +6,17 @@ $numeros = ['0', '45', '245', 'GT7'];
 $baseOrigen = 10;
 $baseDestino = 2;
 
-$x2y = function (string $num) use ($baseOrigen, $baseDestino) {
+$x2y = function (string $num) use ($baseOrigen, $baseDestino): string {
     return dec2x(x2dec($num, $baseOrigen), $baseDestino);
 };
-
-// $pattern = '[0-' . (($baseOrigen < 10) ? "$baseOrigen" : '9,A' . 
-
 
 $numerosFiltrados = array_filter($numeros, fn($numero) => preg_match('/^[0-9A-F]*$/', $numero));
 
 $numerosNuevaBase = array_map($x2y, $numerosFiltrados);
 
-$total = dec2x (array_reduce($numerosFiltrados, function (string $num1, string $num2) use ($baseDestino, $baseOrigen) {
-    return((int) x2dec($num1, $baseOrigen) + (int) x2dec($num2, $baseOrigen));
-}, 0), $baseDestino);
+$total = dec2x(array_reduce($numerosFiltrados, function (string $num1, string $num2) use ($baseOrigen) {
+            return(x2dec($num1, $baseOrigen) + x2dec($num2, $baseOrigen));
+        }, 0), $baseDestino);
 ?>
 <!DOCTYPE html>
 <html>
