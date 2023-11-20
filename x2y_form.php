@@ -20,7 +20,7 @@ if (!empty($_POST)) {
         <div class="page">
             <h1>Aplicación de cambio de base</h1>
             <form class="form" name="form_cambio_de_base" 
-                  action="<?= "{$_SERVER['PHP_SELF']}" ?>" method="POST">                
+                  action="<?= $_SERVER['PHP_SELF'] ?>" method="POST">                
                 <div class="input-seccion">
                     <label for="numero">Número:</label> 
                     <input id="numero" type="text" required pattern="[0-9A-F]*" name="numero" value="<?= ($numero) ?? ''; ?>" />
@@ -43,7 +43,6 @@ if (!empty($_POST)) {
                     <input class="submit" type="submit" 
                            value="Cambio de Base" name="cambiobase" /> 
                 </div>
-
             </form> 
         </div>  
     </body>

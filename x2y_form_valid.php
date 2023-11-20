@@ -45,7 +45,7 @@ if (filter_has_var(INPUT_POST, 'cambiobase')) {
         <div class="page">
             <h1>Aplicación de cambio de base</h1>
             <form class="form" name="form_cambio_de_base" 
-                  action="<?= "{$_SERVER['PHP_SELF']}" ?>" method="POST">
+                  action="<?= $_SERVER['PHP_SELF'] ?>" method="POST">
                 <div class="input-seccion">
                     <label for="numero">Número:</label> 
                     <input id="numero" type="text" name="numero" value="<?= ($numero) ?? ''; ?>" />
