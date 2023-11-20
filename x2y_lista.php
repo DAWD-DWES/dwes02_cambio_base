@@ -15,7 +15,7 @@ $numerosFiltrados = array_filter($numeros, fn($numero) => preg_match('/^[0-9A-F]
 $numerosNuevaBase = array_map($x2y, $numerosFiltrados);
 
 $total = dec2x(array_reduce($numerosFiltrados, function (string $num1, string $num2) use ($baseOrigen) {
-            return(x2dec($num1, $baseOrigen) + x2dec($num2, $baseOrigen));
+            return($num1 + x2dec($num2, $baseOrigen));
         }, 0), $baseDestino);
 ?>
 <!DOCTYPE html>
