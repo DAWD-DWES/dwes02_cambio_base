@@ -27,7 +27,8 @@ body {
     margin: 30px;
 }
 
-input{
+input[type="text"],
+input[type="number"]{
     font-size: 1em;
     flex: 0 1 auto;
     width: 80px;

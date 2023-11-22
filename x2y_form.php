@@ -27,11 +27,11 @@ if (!empty($_POST)) {
                 </div>
                 <div class="input-seccion">
                     <label for="baseorigen">Base Origen (2-16):</label> 
-                    <input id="numero" type="number" min="2" max="16" required name="baseorigen" value="<?= ($baseOrigen) ?? ''; ?>" />
+                    <input id="numero" type="number" min="2" max="16" required name="baseorigen" value="<?= ($baseOrigen) ?? '' ?>" />
                 </div>
                 <div class="input-seccion">
                     <label for="basedestino">Base Destino (2-16):</label> 
-                    <input id="basedestino" type="number" min="2" max="16" required name="basedestino" value="<?= ($baseDestino) ?? ''; ?>" />
+                    <input id="basedestino" type="number" min="2" max="16" required name="basedestino" value="<?= ($baseDestino) ?? '' ?>" />
                 </div>
                 <?php if (isset($numeroNuevaBase)): ?>
                     <div class="input-seccion">
