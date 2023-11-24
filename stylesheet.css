@@ -40,6 +40,13 @@ input[type="number"]{
     justify-content: center;
 }
 
+.table-section {
+    margin: 5em auto;
+    text-align: center;
+    font-size: 1.5em;
+
+}
+
 .submit {
     height: 30px;
     background: orange;
